@@ -12,7 +12,6 @@ class category(models.Model):
     title = models.CharField(max_length=255, db_index=True)
     cost = models.BigIntegerField()
 
-
     def __str__(self):
-        return self.title, self.cost
+        return self.title
 
