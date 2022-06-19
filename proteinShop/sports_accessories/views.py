@@ -7,8 +7,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Create your views here.
+class sports_accessories_APIList(generics.ListCreateAPIView):
+    queryset = sports_accessories.objects.all()
+    serializer_class =  sports_accessories_serializer
 
-class sports_accessoriesAPIView(APIView):
+
+class sports_accessories_APIView(APIView):
     def get(self, request):
         sa = sports_accessories.objects.all()
         return Response({

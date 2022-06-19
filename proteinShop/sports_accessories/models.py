@@ -2,6 +2,7 @@ from django.db import models
 
 class sports_accessories(models.Model):
     title = models.CharField(max_length=255)
+    weight = models.DecimalField(max_digits=7,decimal_places=2)
     cat = models.ForeignKey('category', on_delete=models.PROTECT, null=True)
 
     def __str__(self):
