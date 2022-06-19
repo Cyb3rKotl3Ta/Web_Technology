@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import sports_accessories
 
-# Register your models here.
+admin.site.register(sports_accessories)
