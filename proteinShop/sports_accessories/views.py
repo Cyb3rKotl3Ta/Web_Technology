@@ -12,37 +12,42 @@ class sports_accessories_APIList(generics.ListCreateAPIView):
     serializer_class =  sports_accessories_serializer
 
 
-class sports_accessories_APIView(APIView):
-    def get(self, request):
-        sa = sports_accessories.objects.all()
-        return Response({
-            'posts': sports_accessories_serializer(sa, many=True).data
-        })
-
-    def post(self, request):
-        serializer = sports_accessories_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        return Response({
-            'post': serializer.data
-        })
+class sports_accessories_APIUpdate(generics.UpdateAPIView):
+    queryset = sports_accessories.objects.all()
+    serializer_class =  sports_accessories_serializer
 
 
-    def put(self, request, *args, **kwargs):
-        pk = kwargs.get("pk", None)
-        if not pk:
-            return Response({"error": "Method path not allowed"})
-
-        try:
-            instance = sports_accessories.objects.get(pk=pk)
-        except:
-            return Response({"error": "Object does not exist"})
-
-        serializer = sports_accessories_serializer(data=request.data, instance=instance)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response({"post": serializer.data})
+# class sports_accessories_APIView(APIView):
+#     def get(self, request):
+#         sa = sports_accessories.objects.all()
+#         return Response({
+#             'posts': sports_accessories_serializer(sa, many=True).data
+#         })
+#
+#     def post(self, request):
+#         serializer = sports_accessories_serializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#
+#         return Response({
+#             'post': serializer.data
+#         })
+#
+#
+#     def put(self, request, *args, **kwargs):
+#         pk = kwargs.get("pk", None)
+#         if not pk:
+#             return Response({"error": "Method path not allowed"})
+#
+#         try:
+#             instance = sports_accessories.objects.get(pk=pk)
+#         except:
+#             return Response({"error": "Object does not exist"})
+#
+#         serializer = sports_accessories_serializer(data=request.data, instance=instance)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response({"post": serializer.data})
 
 #class sports_accessoriesAPIView(generics.ListAPIView):
 #    queryset = sports_accessories.objects.all()
